@@ -16,7 +16,7 @@ public class Builder
     Guitar guitar = director.getGuitar();
     System.out.println(guitar.color + ", " + guitar.material + ", " + guitar.strings_number);
   
-    List<Guitar> guitarList = new ArrayList();
+//    List<Guitar> guitarList = new ArrayList();
 //    guitarList.add()
   }
 }
