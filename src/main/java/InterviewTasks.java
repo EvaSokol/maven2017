@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -44,6 +43,20 @@ public class InterviewTasks {
             if (chars[i] == chars[i+1]) return false;
         }
         return true;
+    }
+
+    static Boolean isCyclicShift(String firstString, String secondString){
+        if (firstString.length() != secondString.length()) return false;
+        return checkShift(firstString, secondString)? true: checkShift(secondString, firstString);
+    }
+
+    static Boolean checkShift(String firstString, String secondString){
+        int slen = firstString.length();
+        String substr = firstString.substring(0, slen - 2);
+        if (secondString.substring(1, slen -1).equalsIgnoreCase(substr)
+                && secondString.toCharArray()[0] == firstString.toCharArray()[slen - 1])
+            return true;
+        return false;
     }
 }
 
