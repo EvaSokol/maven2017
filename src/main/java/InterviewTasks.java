@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static java.util.Arrays.sort;
 
@@ -7,12 +6,12 @@ public class InterviewTasks {
 
 // Let's define this method is applicable for ASCII string and this alphabet contains 128 characters
     static Boolean hasAllUniqueSymbolsBruteForce(String s){
-        int slen = s.length();
-        if (slen == 0) return true;
-        if (slen > 128) return false;
+        int sLen = s.length();
+        if (sLen == 0) return true;
+        if (sLen > 128) return false;
 
-        for (int i = 0; i < slen; i++) {
-            for (int j = i+1; j < slen; j++){
+        for (int i = 0; i < sLen; i++) {
+            for (int j = i+1; j < sLen; j++){
                 if (s.charAt(i) == s.charAt(j))
                     return false;
             }
@@ -21,9 +20,9 @@ public class InterviewTasks {
     }
 
     static Boolean hasAllUniqueSymbolsUsingSet(String s){
-        int slen = s.length();
-        if (slen == 0) return true;
-        if (slen > 128) return false;
+        int sLen = s.length();
+        if (sLen == 0) return true;
+        if (sLen > 128) return false;
 
         Set<Character> newSet = new HashSet<Character>();
         for (char ch : s.toCharArray()) newSet.add(ch);
@@ -32,14 +31,14 @@ public class InterviewTasks {
     }
 
     static Boolean hasAllUniqueSymbolsSorting(String s){
-        int slen = s.length();
-        if (slen == 0) return true;
-        if (slen > 128) return false;
+        int sLen = s.length();
+        if (sLen == 0) return true;
+        if (sLen > 128) return false;
 
         char[] chars = s.toCharArray();
         sort(chars);
 
-        for (int i = 0; i < slen-1; i++){
+        for (int i = 0; i < sLen-1; i++){
             if (chars[i] == chars[i+1]) return false;
         }
         return true;
@@ -51,12 +50,27 @@ public class InterviewTasks {
     }
 
     static Boolean checkShift(String firstString, String secondString){
-        int slen = firstString.length();
-        String substr = firstString.substring(0, slen - 2);
-        if (secondString.substring(1, slen -1).equalsIgnoreCase(substr)
-                && secondString.toCharArray()[0] == firstString.toCharArray()[slen - 1])
+        int sLen = firstString.length();
+        String subStr = firstString.substring(0, sLen - 2);
+        if (secondString.substring(1, sLen -1).equalsIgnoreCase(subStr)
+                && secondString.toCharArray()[0] == firstString.toCharArray()[sLen - 1])
             return true;
         return false;
+    }
+
+    static void removeDuplicates(List<Integer> list){
+        Set<Integer> tempSet = new HashSet<Integer>();
+        for (int i = 0; i < list.size(); i++){
+            if (tempSet.contains(list.get(i))) list.remove(i);
+            else tempSet.add(list.get(i));
+        }
+    }
+
+    static void removeDuplicatesNoBuffer(List<Integer> list){
+        for (int i = 0; i < list.size(); i++){
+            int lastIndex = list.lastIndexOf(list.get(i));
+            if (i != lastIndex) list.remove(lastIndex);
+        }
     }
 }
 

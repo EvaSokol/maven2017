@@ -1,8 +1,12 @@
 
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertTrue;
+import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
+import static org.testng.Assert.*;
 
 
 public class TestInterviewTasks {
@@ -124,7 +128,7 @@ public class TestInterviewTasks {
         assertFalse(InterviewTasks.hasAllUniqueSymbolsSorting(str), str);
     }
 
-    @Test(enabled=true)
+    @Test(enabled=false)
     public void testIsCycleShiftPositiveDirectionLeft(){
         String firstString = "qwerty";
         String secondString = "wertyq";
@@ -132,7 +136,7 @@ public class TestInterviewTasks {
                 firstString + " is not shifted by " + secondString);
     }
 
-    @Test(enabled=true)
+    @Test(enabled=false)
     public void testIsCycleShiftPositiveDirectionRight(){
         String firstString = "wertyq";
         String secondString = "qwerty";
@@ -140,7 +144,7 @@ public class TestInterviewTasks {
                 firstString + " is not shifted by " + secondString);
     }
 
-    @Test(enabled=true)
+    @Test(enabled=false)
     public void testIsCycleShiftNegative(){
         String firstString = "qwerty";
         String secondString = "wertyk";
@@ -148,11 +152,45 @@ public class TestInterviewTasks {
                 firstString + " is shifted by " + secondString);
     }
 
-    @Test(enabled=true)
+    @Test(enabled=false)
     public void testIsCycleShiftNotEqual(){
         String firstString = "qwerty";
         String secondString = "qwertyk";
         assertFalse(InterviewTasks.isCyclicShift(firstString, secondString),
                 firstString + " is shifted by " + secondString);
+    }
+
+    @Test(enabled=true)
+    public void testRemoveDuplicatesPositive(){
+        List baseList = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 2, 9, 6));
+        List list = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 2, 9, 6));
+        InterviewTasks.removeDuplicates(list);
+        List expected = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 9));
+        assertEquals(list, expected, String.format("Base list: %s\n result: %s \n expected: %s", baseList, list, expected));
+    }
+
+    @Test(enabled=true)
+    public void testRemoveDuplicatesZero(){
+        List list = new LinkedList<Integer>();
+        InterviewTasks.removeDuplicates(list);
+        List expected = new LinkedList<Integer>();
+        assertEquals(list, expected, String.format("Result: %s \n expected: %s", list, expected));
+    }
+
+    @Test(enabled=true)
+    public void testRemoveDuplicatesNoBufferPositive(){
+        List baseList = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 2, 9, 6));
+        List list = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 2, 9, 6));
+        InterviewTasks.removeDuplicatesNoBuffer(list);
+        List expected = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 9));
+        assertEquals(list, expected, String.format("Base list: %s\n result: %s \n expected: %s", baseList, list, expected));
+    }
+
+    @Test(enabled=true)
+    public void testRemoveDuplicatesNoBufferZero(){
+        List list = new LinkedList<Integer>();
+        InterviewTasks.removeDuplicatesNoBuffer(list);
+        List expected = new LinkedList<Integer>();
+        assertEquals(list, expected, String.format("Result: %s \n expected: %s", list, expected));
     }
 }
