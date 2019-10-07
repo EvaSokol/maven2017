@@ -178,7 +178,7 @@ public class TestInterviewTasks {
     }
 
     @Test(enabled=true)
-    public void testRemoveDuplicatesNoBufferPositive(){
+    public void testRemoveDuplicatesNoBufferPositiveInteger(){
         List baseList = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 2, 9, 6));
         List list = new LinkedList<Integer>(Arrays.asList(2, 3, 5, 6, 7, 2, 9, 6));
         InterviewTasks.removeDuplicatesNoBuffer(list);
@@ -192,5 +192,17 @@ public class TestInterviewTasks {
         InterviewTasks.removeDuplicatesNoBuffer(list);
         List expected = new LinkedList<Integer>();
         assertEquals(list, expected, String.format("Result: %s \n expected: %s", list, expected));
+    }
+
+    @Test(enabled=true)
+    public void testRemoveDuplicatesNoBufferPositiveStrings(){
+        List baseList = new LinkedList<String>(
+                Arrays.asList("asd", "sdf", "bnm", "vcxv", "tert", "bnm", "zxc zsdf", "sdf", "trid"));
+        List list = new LinkedList<String>(
+                Arrays.asList("asd", "sdf", "bnm", "vcxv", "tert", "bnm", "zxc zsdf", "sdf", "trid"));
+        InterviewTasks.removeDuplicatesNoBuffer(list);
+        List expected = new LinkedList<String>(Arrays.asList("asd", "sdf", "bnm", "vcxv", "tert", "zxc zsdf", "trid"));
+        assertEquals(list, expected,
+                String.format("Base list: %s\n result: %s \n expected: %s", baseList, list, expected));
     }
 }

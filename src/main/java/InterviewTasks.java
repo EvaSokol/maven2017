@@ -66,7 +66,7 @@ public class InterviewTasks {
         }
     }
 
-    static void removeDuplicatesNoBuffer(List<Integer> list){
+    static void removeDuplicatesNoBuffer(List<?> list){
         for (int i = 0; i < list.size(); i++){
             int lastIndex = list.lastIndexOf(list.get(i));
             if (i != lastIndex) list.remove(lastIndex);
